@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">authentication</string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="UniRoll">University Roll Number</string>
+    <string name="Email">Email</string>
+    <string name="year">Year</string>
+    <string name="branch">Branch</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="address">Address Line</string>
+    <string name="PreNumber">+91</string>
+    <string name="Number">XXXXXXXXXX</string>
+    <string name="password">Password</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="SignIn">Sign In</string>
+    <string name="alrdy">Already have an account?</string>
+
+
+    <string-array name="year_dropdown">
+        <item>2nd year</item>
+        <item>3rd year</item>
+        <item>4th year</item>
+    </string-array>
+
+    <string-array name="branch_dropdown">
+        <item>CSE</item>
+        <item>CSE(AI &amp; ML)</item>
+        <item>CSE(DS)</item>
+        <item>IT</item>
+        <item>ECE</item>
+        <item>CS</item>
+        <item>CS/IT</item>
+
+    </string-array>
+
+</resources>
