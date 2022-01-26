@@ -21,9 +21,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
             android:text="Sign Up"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="36sp"
-            app:layout_constraintVertical_bias="0.12"
+            app:layout_constraintVertical_bias="0.06"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.066"
+            app:layout_constraintVertical_bias="0.07"
             android:orientation="vertical">
 
             <LinearLayout
@@ -46,7 +46,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField1"
+                    android:id="@+id/FirstName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fname"
@@ -55,14 +55,16 @@
                     style="@style/TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eFirstName"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField2"
+                    android:id="@+id/LastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/lname"
@@ -71,16 +73,17 @@
                     style="@style/TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eLastName"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
-
 
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/filledTextField3"
+                android:id="@+id/UniversityRoll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/UniRoll"
@@ -88,13 +91,16 @@
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eUniversityRoll"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/filledTextField4"
+                android:id="@+id/Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/Email"
@@ -102,8 +108,10 @@
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eEmail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,7 +122,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField5"
+                    android:id="@+id/year"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/year"
@@ -123,7 +131,7 @@
                     style="@style/TextInputLayout.OutlinedBox.Exposed.DropDown">
 
                     <AutoCompleteTextView
-                        android:id="@+id/AutoCompleteTextView"
+                        android:id="@+id/AutoCompleteTextViewYear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"/>
@@ -132,7 +140,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField6"
+                    android:id="@+id/Branch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/branch"
@@ -141,7 +149,7 @@
                     style="@style/TextInputLayout.OutlinedBox.Exposed.DropDown">
 
                     <AutoCompleteTextView
-                        android:id="@+id/AutoCompleteTextView2"
+                        android:id="@+id/AutoCompleteTextViewBranch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"/>
@@ -153,7 +161,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/filledTextField7"
+                android:id="@+id/Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
@@ -161,69 +169,43 @@
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ePassword"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField8"
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:checkedButton="@+id/radio_button_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/male"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="6dp"
-                    style="@style/TextInputLayout.OutlinedBox">
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/male"/>
+                    <RadioButton
+                        android:id="@+id/rbFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/female"/>
+                    <RadioButton
+                        android:id="@+id/rbOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/other"/>
+                </RadioGroup>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/female"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    style="@style/TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/other"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    style="@style/TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/filledTextField11"
+                android:id="@+id/AddressLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/address"
@@ -231,8 +213,10 @@
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/eAddressLine"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -240,36 +224,42 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:weightSum="1"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField12"
-                    android:layout_width="match_parent"
+                    android:id="@+id/preNumber"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/PreNumber"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.31"
                     android:layout_marginEnd="6dp"
-                    style="@style/TextInputLayout.OutlinedBox">
+                    style="@style/TextInputLayout.OutlinedBox.Exposed.DropDown">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
+                        android:id="@+id/AutoCompleteTextViewNumberCode"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@string/PreNumber"
+                        android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/filledTextField13"
-                    android:layout_width="match_parent"
+                    android:id="@+id/MobileNumber"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/Number"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.69"
                     android:layout_marginStart="6dp"
                     style="@style/TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eMobileNumber"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -283,45 +273,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_captcha"
-            app:layout_constraintTop_toBottomOf="@+id/signup_form"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/SignUp_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/singup_button"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signup_form" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/singup_button"
+            android:id="@+id/SignUp_button"
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:text="@string/SignUp"
-            app:layout_constraintTop_toBottomOf="@+id/captcha"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/captcha" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:orientation="horizontal"
-            android:paddingStart="80dp"
-            app:layout_constraintTop_toBottomOf="@+id/singup_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:paddingStart="63dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:fontFamily="@font/montserrat_light"
-                android:text="@string/alrdy"/>
+                android:text="@string/alrdy"
+                android:textSize="12sp" />
+
             <TextView
+                android:id="@+id/SignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
                 android:fontFamily="@font/montserrat_light"
                 android:text="@string/SignIn"
-                android:textColor="@color/red"/>
+                android:textColor="@color/red"
+                android:textSize="12sp" />
         </LinearLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

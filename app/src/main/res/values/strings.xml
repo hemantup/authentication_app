@@ -16,6 +16,8 @@
     <string name="SignUp">Sign Up</string>
     <string name="SignIn">Sign In</string>
     <string name="alrdy">Already have an account?</string>
+    <string name="userid">Username</string>
+    <string name="ForgotPassword">Forgot Password</string>
 
 
     <string-array name="year_dropdown">
@@ -26,13 +28,19 @@
 
     <string-array name="branch_dropdown">
         <item>CSE</item>
-        <item>CSE(AI &amp; ML)</item>
+        <item>CSE AI&amp;ML</item>
         <item>CSE(DS)</item>
         <item>IT</item>
         <item>ECE</item>
         <item>CS</item>
         <item>CS/IT</item>
+    </string-array>
 
+    <string-array name="preNumberCode">
+        <item>+91</item>
+        <item>+62</item>
+        <item>+93</item>
+        <item>+54</item>
     </string-array>
 
 </resources>
