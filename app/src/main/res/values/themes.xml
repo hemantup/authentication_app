@@ -16,7 +16,7 @@
 
     <style name="Theme.Authentication.Overlay" parent="ThemeOverlay.MaterialComponents.Dark">
         <!-- Secondary brand color. -->
-        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimary">@color/green</item>
         <item name="colorOnPrimary">@color/black</item>
     </style>
 
