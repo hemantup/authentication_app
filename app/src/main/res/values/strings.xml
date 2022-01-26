@@ -16,6 +16,10 @@
     <string name="SignUp">Sign Up</string>
     <string name="SignIn">Sign In</string>
     <string name="alrdy">Already have an account?</string>
+    <string name="new_password">Enter Your Password</string>
+    <string name="re_enter">Re enter your password</string>
+    <string name="otp">Enter OTP</string>
+    <string name="change">Confirm</string>
     <string name="userid">Username</string>
     <string name="ForgotPassword">Forgot Password</string>
 
