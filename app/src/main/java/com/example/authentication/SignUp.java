@@ -1,7 +1,9 @@
 package com.example.authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +15,7 @@ public class SignUp extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTxt,autoCompleteTxt2,autoCompleteTxt3;
 
     ArrayAdapter<String> adapteritem,adapteritem2,adapteritem3;
+    AppCompatButton signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class SignUp extends AppCompatActivity {
         autoCompleteTxt=findViewById(R.id.AutoCompleteTextViewYear);
         autoCompleteTxt2= findViewById(R.id.AutoCompleteTextViewBranch);
         autoCompleteTxt3=findViewById(R.id.AutoCompleteTextViewNumberCode);
+        signup = findViewById(R.id.SignUp_button);
 
 
         adapteritem = new ArrayAdapter<String>(this,R.layout.dropdown,year_dropdown);
@@ -36,5 +40,20 @@ public class SignUp extends AppCompatActivity {
         autoCompleteTxt2.setAdapter(adapteritem2);
         autoCompleteTxt3.setAdapter(adapteritem3);
 
+
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenOtpVerificationNumber();
+            }
+        });
+
+    }
+
+    private void OpenOtpVerificationNumber() {
+        Intent intent = new Intent(this, OtpVerificationNumber.class);
+        startActivity(intent);
+        finish();
     }
 }
