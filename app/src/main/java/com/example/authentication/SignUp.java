@@ -83,9 +83,9 @@ public class SignUp extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (task.isSuccessful()){
-                                    user user = new user(firstName,lastName,UniversityRollNumber,Email, Password,Address,MobileNumber);
+                                    User user = new User(firstName,lastName,UniversityRollNumber,Email, Password,Address,MobileNumber);
                                     FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
-                                    DatabaseReference myRef = mdatabase.getReference().child("Users");
+                                    DatabaseReference myRef = mdatabase.getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                         myRef
                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
