@@ -72,8 +72,6 @@ public class SignUp extends AppCompatActivity {
                 String MobileNumber = phone.getText().toString().trim();
 
 
-
-
                 mAuth.createUserWithEmailAndPassword(Email,Password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
