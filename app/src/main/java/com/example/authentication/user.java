@@ -7,7 +7,7 @@ public class user {
 
     }
 
-    public user(String fName,String lName, String Unr, String email, String password, String add, String MobNo){
+    public user(String fName, String lName, String Unr, String email, String password, String add, String MobNo){
         this.firstName = fName;
         this.lastName = lName;
         this.UniversityRollNumber = Unr;
