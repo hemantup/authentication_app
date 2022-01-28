@@ -4,7 +4,6 @@
 
 # Files for the Dalvik VM
 *.dex
-app/src/main/java/com/example/authentication/user.java
 
 # Java class files
 *.class
