@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -83,7 +82,7 @@ public class SignUp extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (task.isSuccessful()){
-                                    User user = new User(firstName,lastName,UniversityRollNumber,Email, Password,Address,MobileNumber);
+                                    user user = new user(firstName,lastName,UniversityRollNumber,Email, Password,Address,MobileNumber);
                                     FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
                                     DatabaseReference myRef = mdatabase.getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                         myRef

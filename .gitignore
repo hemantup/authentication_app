@@ -3,6 +3,7 @@
 *.ap_
 
 # Files for the Dalvik VM
+google-services.json
 *.dex
 
 # Java class files
