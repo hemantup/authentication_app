@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "419371315335",
+    "firebase_url": "https://authentication-app-43d25-default-rtdb.firebaseio.com",
     "project_id": "authentication-app-43d25",
     "storage_bucket": "authentication-app-43d25.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:419371315335:android:7d0e364eaca3e73e794822",
+        "mobilesdk_app_id": "1:419371315335:android:0133ceb84782f340794822",
         "android_client_info": {
           "package_name": "com.example.authentication"
         }
