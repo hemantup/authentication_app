@@ -11,7 +11,7 @@
     <string name="other">Other</string>
     <string name="address">Address Line</string>
     <string name="PreNumber">+91</string>
-    <string name="Number">XXXXXXXXXX</string>
+    <string name="Number">Number</string>
     <string name="password">Password</string>
     <string name="SignUp">Sign Up</string>
     <string name="SignIn">Sign In</string>
@@ -19,7 +19,8 @@
     <string name="new_password">Enter Your Password</string>
     <string name="re_enter">Re enter your password</string>
     <string name="otp">Enter OTP</string>
-    <string name="change">Confirm</string>
+    <string name="confirm">Confirm</string>
+    <string name="send_otp">Send OTP</string>
     <string name="userid">Username</string>
     <string name="ForgotPassword">Forgot Password</string>
 
@@ -38,13 +39,6 @@
         <item>ECE</item>
         <item>CS</item>
         <item>CS/IT</item>
-    </string-array>
-
-    <string-array name="preNumberCode">
-        <item>+91</item>
-        <item>+62</item>
-        <item>+93</item>
-        <item>+54</item>
     </string-array>
 
 </resources>

@@ -46,16 +46,17 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/FirstName"
+                    android:id="@+id/tvFirstName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fname"
                     android:layout_weight="1"
+                    app:counterMaxLength="20"
                     android:layout_marginEnd="6dp"
                     style="@style/TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eFirstName"
+                        android:id="@+id/etFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1"/>
@@ -64,16 +65,17 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/LastName"
+                    android:id="@+id/tvLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/lname"
                     android:layout_weight="1"
+                    app:counterMaxLength="20"
                     android:layout_marginStart="6dp"
                     style="@style/TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eLastName"
+                        android:id="@+id/etLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1"/>
@@ -83,15 +85,16 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/UniversityRoll"
+                android:id="@+id/tvUniversityRoll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/UniRoll"
                 android:layout_weight="1"
+                app:counterMaxLength="13"
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eUniversityRoll"
+                    android:id="@+id/etUniversityRoll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
@@ -100,7 +103,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Email"
+                android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/Email"
@@ -108,7 +111,7 @@
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eEmail"
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"/>
@@ -122,7 +125,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/year"
+                    android:id="@+id/tvYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/year"
@@ -133,14 +136,14 @@
                     <AutoCompleteTextView
                         android:id="@+id/AutoCompleteTextViewYear"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/Branch"
+                    android:id="@+id/tvBranch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/branch"
@@ -151,7 +154,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/AutoCompleteTextViewBranch"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -161,7 +164,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Password"
+                android:id="@+id/tvPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
@@ -169,8 +172,9 @@
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ePassword"
+                    android:id="@+id/etPassword"
                     android:layout_width="match_parent"
+                    android:inputType="textPassword"
                     android:layout_height="wrap_content"
                     android:maxLines="1"/>
 
@@ -178,7 +182,7 @@
 
 
                 <RadioGroup
-                    android:id="@+id/radioGroup"
+                    android:id="@+id/radioGroupGender"
                     android:checkedButton="@+id/radio_button_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -205,15 +209,17 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/AddressLine"
+                android:id="@+id/tvAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_location"
                 android:hint="@string/address"
                 android:layout_weight="1"
+                app:counterMaxLength="100"
                 style="@style/TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/eAddressLine"
+                    android:id="@+id/etAddressLine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="1"/>
@@ -221,50 +227,26 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="1"
-                android:orientation="horizontal">
+                android:hint="@string/Number"
+                app:counterMaxLength="10"
+                app:endIconMode="custom"
+                app:startIconDrawable="@drawable/ic_phone"
+                app:prefixText="+91"
+                app:counterEnabled="true"
+                style="@style/TextInputLayout.OutlinedBox">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/preNumber"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMobileNumber"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.31"
-                    android:layout_marginEnd="6dp"
-                    style="@style/TextInputLayout.OutlinedBox.Exposed.DropDown">
+                    android:inputType="number"
+                    android:maxLines="1"/>
 
-                    <AutoCompleteTextView
-                        android:id="@+id/AutoCompleteTextViewNumberCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/PreNumber"
-                        android:inputType="none"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/MobileNumber"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/Number"
-                    android:layout_weight="0.69"
-                    android:layout_marginStart="6dp"
-                    style="@style/TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eMobileNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLines="1"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -309,7 +291,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/SignIn"
+                android:id="@+id/tvSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_light"
