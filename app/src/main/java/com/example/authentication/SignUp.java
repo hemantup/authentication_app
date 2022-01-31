@@ -161,6 +161,37 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+        //Ontextchanged mobile number
+        etMobileNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String mobileNumber = etMobileNumber.getText().toString().trim();
+                if(mobileNumber.isEmpty()){
+                    etMobileNumber.requestFocus();
+                    tlMobileNumber.setErrorEnabled(true);
+                    tlMobileNumber.setError("*required");
+                }else if(mobileNumber.length() !=10){
+                    etMobileNumber.requestFocus();
+                    tlMobileNumber.setErrorEnabled(true);
+                    tlMobileNumber.setError("Mobile number must be of 10 digits");
+                }else{
+                    tlMobileNumber.setErrorEnabled(false);
+                    tlMobileNumber.setError(null);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         //  Onclick listener on Sign Up Button
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,7 +216,6 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openSignIn();
-
             }
         });
     }

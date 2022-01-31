@@ -21,6 +21,8 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -90,35 +92,20 @@ public class OtpVerificationNumber extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    mAuth.createUserWithEmailAndPassword(user.Email,user.Password)
-                                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                                    if (task.isSuccessful()){
-                                                        FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
-                                                        DatabaseReference myRef = mdatabase.getReference().child("Users");
-                                                        myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-
-                                                                if(task.isSuccessful()){
-                                                                    Toast.makeText(OtpVerificationNumber.this, "Verified", Toast.LENGTH_SHORT).show();
-                                                                    OpenSignIn();
-                                                                }else{
-                                                                    Toast.makeText(OtpVerificationNumber.this, "Failed to register", Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            }
-                                                        });
-
-                                                    }else{
-                                                        Toast.makeText(OtpVerificationNumber.this,"failed to register try again",Toast.LENGTH_SHORT).show();
-                                                    }
+                                        FirebaseFirestore final_firestore = FirebaseFirestore.getInstance();
+                                        final_firestore.collection("entries").document(user.UniversityRollNumber).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+                                                    Toast.makeText(OtpVerificationNumber.this,"registered",Toast.LENGTH_SHORT).show();
+                                                    OpenSignIn();
+                                                }else{
+                                                    Toast.makeText(OtpVerificationNumber.this,"not registered",Toast.LENGTH_SHORT).show();
                                                 }
-                                            });
+                                            }
+                                        });
                                 }else {
-                                    Toast.makeText(OtpVerificationNumber.this,"Invalid",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(OtpVerificationNumber.this,"Invalid OTP",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
