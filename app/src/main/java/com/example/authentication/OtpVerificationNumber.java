@@ -44,7 +44,8 @@ public class OtpVerificationNumber extends AppCompatActivity {
         User user = (User) getIntent().getSerializableExtra("userInformation");
 
         mAuth = FirebaseAuth.getInstance();
-        Log.e("OTP VERIFY", "onCreate: here");
+
+
         sendOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

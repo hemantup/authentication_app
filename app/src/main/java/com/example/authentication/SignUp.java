@@ -175,7 +175,7 @@ public class SignUp extends AppCompatActivity {
                 String UniversityRollNumber= etUniRollNo.getText().toString().trim();
                 String lastName = etLastName.getText().toString().trim();
                 String firstName = etFirstName.getText().toString().trim();
-                Log.e("TAG", "onClick: after executed");
+
                 User user = new User(firstName,lastName,UniversityRollNumber,Email, Password,Address,MobileNumber,year,branch);
                 infoVerification(user);
             }
@@ -219,11 +219,10 @@ public class SignUp extends AppCompatActivity {
 
         //  Password and Email constraints
         if(user.Password.isEmpty() | user.Email.isEmpty()){
-            if(user.Password.isEmpty()){
+            if (user.Password.isEmpty()){
                 etPassword.requestFocus();
                 tlPassword.setErrorEnabled(true);
                 tlPassword.setError("*Required");
-                Log.e("TAG", "infoverification: isempty");
                 return;
             }else{
                 etEmail.requestFocus();
