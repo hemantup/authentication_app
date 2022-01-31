@@ -83,17 +83,34 @@ public class SignIn extends AppCompatActivity {
     }
 
     private void getentries() {
-        String password = etPassword.getText().toString().trim();
-        String username = etUsername.getText().toString().trim();
-        DocumentReference userRef = final_firestore.collection("entries").document(username);
-        userRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        DocumentReference userRef = final_firestore.collection("entries").document(etUsername.getText().toString().trim());
+        userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                String passwordDB = value.getString("Password");
-                if(passwordDB.equals(password)){
-                    OpenMainActivity();
-                }else{
-                    etPassword.setError("Wrong Password");
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    String uniRollDB = document.getString("UniversityRollNumber");
+                    String passwordDB = document.getString("Password");
+                    Log.e("TAG", "onComplete: yaha tk pahuch gae");
+                    if(document.exists()){
+                        Log.e("TAG", "onComplete: kyu chala");
+                        String password = etPassword.getText().toString().trim();
+                        String username = etUsername.getText().toString().trim();
+                        Log.e("TAG", "onComplete: why");
+                        if(uniRollDB.equals(username)){
+                            Log.e("TAG", "onComplete: why here");
+                            if(passwordDB.equals(password)){
+                                OpenMainActivity();
+                            }else{
+                                etPassword.setError("Wrong Password");
+                            }
+                        }else{
+                            etUsername.setError("Wrong username");
+                        }
+                    }else{
+                        Log.e("TAG", "onComplete: yaha tk pahuch gae nhi mila data");
+                        Toast.makeText(SignIn.this,"No data exist", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
