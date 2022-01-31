@@ -33,7 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class SignIn extends AppCompatActivity {
 
     AppCompatButton SignInBtn;
-    TextView forgot_password;
+    TextView forgot_password,signup;
     TextInputLayout tlUsername, tlPassword;
     TextInputEditText etUsername, etPassword;
     FirebaseFirestore final_firestore = FirebaseFirestore.getInstance();
@@ -50,23 +50,36 @@ public class SignIn extends AppCompatActivity {
         tlPassword = findViewById(R.id.password);
         etUsername = findViewById(R.id.eUserName);
         etPassword = findViewById(R.id.ePassword);
+        signup = findViewById(R.id.tvSignUn);
 
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                OpenForgotPassword();
             }
         });
 
         SignInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("TAG", "onClick: chal na be");
                 getentries();
             }
         });
 
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignIn.this,SignUp.class);
+                startActivity(intent);
+            }
+        });
 
+    }
+
+    private void OpenForgotPassword() {
+        Intent intent = new Intent(SignIn.this,ForgotPassword.class);
+        startActivity(intent);
     }
 
     private void getentries() {

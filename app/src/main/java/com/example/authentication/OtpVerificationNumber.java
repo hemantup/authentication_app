@@ -51,7 +51,6 @@ public class OtpVerificationNumber extends AppCompatActivity {
         sendOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("TAG", "onClick: here2");
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
                         "+91"+user.MobileNumber,
                         60,
