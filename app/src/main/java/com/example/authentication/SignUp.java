@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -29,6 +30,8 @@ public class SignUp extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTxt,autoCompleteTxt2;
     TextView tvSignIn;
     RadioGroup rgGender;
+
+    String SGender="";
 
     //  Array adapter for dropdown menu
     ArrayAdapter<String> adapterItem, adapterItem2;
@@ -71,8 +74,8 @@ public class SignUp extends AppCompatActivity {
 
         signup = findViewById(R.id.SignUp_button);
 
-        adapterItem = new ArrayAdapter<String>(this, R.layout.dropdown, year_dropdown);
-        adapterItem2 = new ArrayAdapter<String>(this, R.layout.dropdown, branch_dropdown);
+        adapterItem = new ArrayAdapter<>(this, R.layout.dropdown, year_dropdown);
+        adapterItem2 = new ArrayAdapter<>(this, R.layout.dropdown, branch_dropdown);
 
         autoCompleteTxt.setAdapter(adapterItem);
         autoCompleteTxt2.setAdapter(adapterItem2);
@@ -142,6 +145,23 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+        etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                validateEmail(tlEmail,etEmail,s.toString().trim());
+            }
+        });
+
         //  Onclick listener on Sign Up Button
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,7 +208,7 @@ public class SignUp extends AppCompatActivity {
 
     private boolean validateNumber(@Nullable TextInputLayout inputLayout,
                                    @Nullable EditText editText, @Nullable String number){
-        if (inputLayout == null || editText == null) {
+        if (inputLayout == null || editText == null || number == null) {
             return false;
         }
         if(TextUtils.isEmpty(number)) {
@@ -196,16 +216,15 @@ public class SignUp extends AppCompatActivity {
             inputLayout.setErrorEnabled(true);
             inputLayout.setError("*required");
             return false;
-        }else if(number.length() ==10){
-            inputLayout.setErrorEnabled(false);
-            inputLayout.setError(null);
-            return true;
-
-        }else{
+        }else if(number.length() != 10){
             editText.requestFocus();
             inputLayout.setErrorEnabled(true);
             inputLayout.setError("Mobile number must be of 10 digits");
             return false;
+        }else{
+            inputLayout.setErrorEnabled(false);
+            inputLayout.setError(null);
+            return true;
         }
     }
 
@@ -259,16 +278,21 @@ public class SignUp extends AppCompatActivity {
 
     private boolean validateEmail(@Nullable TextInputLayout inputLayout,
                                   @Nullable EditText editText, @Nullable String email){
-        if(inputLayout == null || editText == null ) {
+        if(inputLayout == null || editText == null || email == null ) {
             return false;
 
         }
         if(TextUtils.isEmpty(email)){
             editText.requestFocus();
             inputLayout.setErrorEnabled(true);
-            inputLayout.setError("provide an email");
+            inputLayout.setError("provide an email address");
             return false;
-            }else{
+            }else if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    editText.requestFocus();
+                    inputLayout.setErrorEnabled(true);
+                    inputLayout.setError("Provide an valid email");
+                    return false;
+                }else{
                 inputLayout.setErrorEnabled(false);
                 inputLayout.setError(null);
                 return true;
@@ -325,16 +349,20 @@ public class SignUp extends AppCompatActivity {
 
             int checkedRadioButtonId = rgGender.getCheckedRadioButtonId();
             if (checkedRadioButtonId == R.id.rbMale) {
-                Toast.makeText(this, "Male", Toast.LENGTH_SHORT).show();
-            } else if (checkedRadioButtonId == R.id.rbFemale) {
-                Toast.makeText(this, "Female", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Others", Toast.LENGTH_SHORT).show();
-            }
+                SGender = "Male";
+            }else if (checkedRadioButtonId == R.id.rbFemale) {
+                SGender = "Female";
+            }else if(checkedRadioButtonId == R.id.rbOther)
+                    SGender = "Other";
 
-            boolean number = validateNumber(tlMobileNumber,etMobileNumber,etMobileNumber.toString().trim());
+            if(TextUtils.isEmpty(SGender)){
+                Toast.makeText(this, "gender select kr lo maharaj", Toast.LENGTH_SHORT).show();
+            }else
+                Toast.makeText(this, SGender, Toast.LENGTH_SHORT).show();
+
+            boolean number = validateNumber(tlMobileNumber,etMobileNumber,etMobileNumber.getText().toString().trim());
             boolean address = validateAddress(tlAddress,etAddress, etAddress.getText().toString().trim());
-            boolean password = validatePassword(tlPassword,etPassword,etPassword.toString().trim());
+            boolean password = validatePassword(tlPassword,etPassword,etPassword.getText().toString().trim());
             boolean branch = validateYearBranch(tlBranch, autoCompleteTxt2.getText().toString().trim());
             boolean year = validateYearBranch(tlYear, autoCompleteTxt.getText().toString().trim());
             boolean email = validateEmail(tlEmail,etEmail,etEmail.getText().toString().trim());
