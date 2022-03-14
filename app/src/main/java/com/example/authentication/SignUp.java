@@ -1,23 +1,25 @@
 package com.example.authentication;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.RadioButton;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import javax.annotation.Nullable;
 
 public class SignUp extends AppCompatActivity {
 
@@ -26,12 +28,11 @@ public class SignUp extends AppCompatActivity {
     TextInputLayout tlFirstName, tlLastName, tlUniRollNo, tlEmail, tlPassword, tlAddress, tlMobileNumber, tlYear, tlBranch;
     AutoCompleteTextView autoCompleteTxt,autoCompleteTxt2;
     TextView tvSignIn;
+    RadioGroup rgGender;
 
     //  Array adapter for dropdown menu
     ArrayAdapter<String> adapterItem, adapterItem2;
     AppCompatButton signup;
-
-    String genderTxt = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class SignUp extends AppCompatActivity {
         tlYear = findViewById(R.id.tvYear);
         tlBranch = findViewById(R.id.tvBranch);
 
+        rgGender = findViewById(R.id.radioGroupGender);
+
         tvSignIn = findViewById(R.id.tvSignIn);
 
         String[] year_dropdown = getResources().getStringArray(R.array.year_dropdown);
@@ -83,22 +86,11 @@ public class SignUp extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //  first name constraint
-                String firstName= etFirstName.getText().toString().trim();
-                if(firstName.isEmpty()){
-                    etFirstName.requestFocus();
-                    tlFirstName.setErrorEnabled(true);
-                    tlFirstName.setError("Can't be left empty");
-                }else{
-                    tlFirstName.setErrorEnabled(false);
-                    tlFirstName.setError(null);
-                }
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                // auto generated
+                validateName(tlFirstName, etFirstName, editable);
             }
         });
 
@@ -110,22 +102,11 @@ public class SignUp extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                //  first name constraint
-                String lastName = etLastName.getText().toString().trim();
-                if(lastName.isEmpty()){
-                    etLastName.requestFocus();
-                    tlLastName.setErrorEnabled(true);
-                    tlLastName.setError("Can't be left empty");
-                }else{
-                    tlLastName.setErrorEnabled(false);
-                    tlLastName.setError(null);
-                }
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                // auto generated
+                validateName(tlLastName, etLastName, editable);
             }
         });
 
@@ -137,27 +118,11 @@ public class SignUp extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                // University Roll number constraint
-                String UniversityRollNumber= etUniRollNo.getText().toString().trim();
-                if(UniversityRollNumber.isEmpty()){
-                    etUniRollNo.requestFocus();
-                    tlUniRollNo.setErrorEnabled(true);
-                    tlUniRollNo.setError("Can't be left empty");
-                }else if(UniversityRollNumber.length()<13){
-                    etUniRollNo.requestFocus();
-                    tlUniRollNo.setErrorEnabled(true);
-                    tlUniRollNo.setError("University Roll Number must be 13 digits");
-                }else{
-                    tlUniRollNo.setErrorEnabled(false);
-                    tlUniRollNo.setError(null);
-                }
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                validateUniversityRoll(tlUniRollNo,etUniRollNo,editable.toString().trim());
             }
         });
 
@@ -169,26 +134,11 @@ public class SignUp extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String mobileNumber = etMobileNumber.getText().toString().trim();
-                if(mobileNumber.isEmpty()){
-                    etMobileNumber.requestFocus();
-                    tlMobileNumber.setErrorEnabled(true);
-                    tlMobileNumber.setError("*required");
-                }else if(mobileNumber.length() !=10){
-                    etMobileNumber.requestFocus();
-                    tlMobileNumber.setErrorEnabled(true);
-                    tlMobileNumber.setError("Mobile number must be of 10 digits");
-                }else{
-                    tlMobileNumber.setErrorEnabled(false);
-                    tlMobileNumber.setError(null);
-                }
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                validateNumber(tlMobileNumber,etMobileNumber,editable.toString().trim());
             }
         });
 
@@ -220,6 +170,152 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+    private boolean validateYearBranch(@Nullable TextInputLayout inputLayout, @Nullable String year){
+        //  Year constraint
+        if(inputLayout == null){
+            return false;
+        }
+        if(TextUtils.isEmpty(year)){
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("Year Required");
+            return false;
+        }else{
+            inputLayout.setErrorEnabled(false);
+            inputLayout.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateNumber(@Nullable TextInputLayout inputLayout,
+                                   @Nullable EditText editText, @Nullable String number){
+        if (inputLayout == null || editText == null) {
+            return false;
+        }
+        if(TextUtils.isEmpty(number)) {
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("*required");
+            return false;
+        }else if(number.length() ==10){
+            inputLayout.setErrorEnabled(false);
+            inputLayout.setError(null);
+            return true;
+
+        }else{
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("Mobile number must be of 10 digits");
+            return false;
+        }
+    }
+
+    private boolean validateUniversityRoll(@Nullable TextInputLayout inputLayout,
+                                           @Nullable EditText editText, @Nullable String uniRoll){
+        if(inputLayout == null || editText == null ) {
+            return false;
+        }
+        // University Roll number constraint
+        if(TextUtils.isEmpty(uniRoll)){
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("Can't be left empty");
+            return false;
+        }else if(uniRoll.length()<13){
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("University Roll Number must be 13 digits");
+            return false;
+        }else{
+            inputLayout.setErrorEnabled(false);
+            inputLayout.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateName(@Nullable TextInputLayout inputLayout,
+                                 @Nullable EditText editText, @Nullable String name) {
+        if (inputLayout == null || editText == null) {
+            return false;
+        }
+
+        if (TextUtils.isEmpty(name)) {
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("Can't be left empty");
+
+            return false;
+        } else {
+            inputLayout.setErrorEnabled(false);
+            inputLayout.setError(null);
+
+            return true;
+        }
+    }
+
+    private boolean validateName(@Nullable TextInputLayout inputLayout,
+                                 @Nullable EditText editText, @Nullable Editable name) {
+        return validateName(inputLayout, editText, name != null ? name.toString().trim() : null);
+    }
+
+    private boolean validateEmail(@Nullable TextInputLayout inputLayout,
+                                  @Nullable EditText editText, @Nullable String email){
+        if(inputLayout == null || editText == null ) {
+            return false;
+
+        }
+        if(TextUtils.isEmpty(email)){
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("provide an email");
+            return false;
+            }else{
+                inputLayout.setErrorEnabled(false);
+                inputLayout.setError(null);
+                return true;
+            }
+    }
+
+    private boolean validatePassword(@Nullable TextInputLayout inputLayout,
+                                     @Nullable EditText editText, @Nullable String password) {
+
+        if(inputLayout == null || editText == null ) {
+            return false;
+        }
+        String checkPassword = "^" +
+                "(?=.*[@#$%&+=])" +  //at least 1 special character
+                "(?=.*[0-9])" +      //at least 1 digit
+                "(?=.*[a-zA-Z])" +   //any letter
+                "(?=\\S+$)" +        //no white spaces
+                ".{8,}";             //at least 8 character
+        if (!password.matches(checkPassword)) {
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("Password must be 8character long and 1digit1specialchar with no white spaces");
+            return false;
+        } else {
+            inputLayout.setErrorEnabled(false);
+            inputLayout.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateAddress(@Nullable TextInputLayout inputLayout,
+                                    @Nullable EditText editText,@Nullable String address){
+        if(inputLayout ==null || editText == null){
+            return false;
+        }
+        if (TextUtils.isEmpty(address)){
+            editText.requestFocus();
+            inputLayout.setErrorEnabled(true);
+            inputLayout.setError("Address required");
+            return false;
+        }else{
+            inputLayout.setErrorEnabled(false);
+            inputLayout.setError(null);
+            return true;
+        }
+    }
+
     private void openSignIn() {
         Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
@@ -227,74 +323,32 @@ public class SignUp extends AppCompatActivity {
 
     private void infoVerification(User user) {
 
-        //  Year constraint
-        if(user.year.isEmpty()){
-            tlYear.setErrorEnabled(true);
-            tlYear.setError("Year Required");
-            return;
-        }else{
-            tlYear.setErrorEnabled(false);
-            tlYear.setError(null);
-        }
-
-        //  branch constraint
-        if(user.branch.isEmpty()){
-            tlBranch.setErrorEnabled(true);
-            tlBranch.setError("Branch Required");
-            return;
-        }else{
-            tlBranch.setErrorEnabled(false);
-            tlBranch.setError(null);
-        }
-
-        //  Password and Email constraints
-        if(user.Password.isEmpty() | user.Email.isEmpty()){
-            if (user.Password.isEmpty()){
-                etPassword.requestFocus();
-                tlPassword.setErrorEnabled(true);
-                tlPassword.setError("*Required");
-                return;
-            }else{
-                etEmail.requestFocus();
-                tlEmail.setErrorEnabled(true);
-                tlEmail.setError("provide an email");
-                return;
+            int checkedRadioButtonId = rgGender.getCheckedRadioButtonId();
+            if (checkedRadioButtonId == R.id.rbMale) {
+                Toast.makeText(this, "Male", Toast.LENGTH_SHORT).show();
+            } else if (checkedRadioButtonId == R.id.rbFemale) {
+                Toast.makeText(this, "Female", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Others", Toast.LENGTH_SHORT).show();
             }
 
-        }else {
-            String checkPassword = "^" +
-                    "(?=.*[@#$%&+=])" +  //at least 1 special character
-                    "(?=.*[0-9])" +      //at least 1 digit
-                    "(?=.*[a-zA-Z])" +   //any letter
-                    "(?=\\S+$)" +        //no white spaces
-                    ".{8,}";             //at least 8 character
-            if(!user.Password.matches(checkPassword) | !Patterns.EMAIL_ADDRESS.matcher(user.Email).matches()){
-                if(!user.Password.matches(checkPassword)){
-                    etPassword.requestFocus();
-                    tlPassword.setErrorEnabled(true);
-                    tlPassword.setError("Password must be 8character long and 1digit1specialchar with no white spaces");
-                    return;
-                }else{
-                    etEmail.requestFocus();
-                    tlEmail.setErrorEnabled(true);
-                    tlEmail.setError("Provide a valid Email");
-                    return;
-                }
+            boolean number = validateNumber(tlMobileNumber,etMobileNumber,etMobileNumber.toString().trim());
+            boolean address = validateAddress(tlAddress,etAddress, etAddress.getText().toString().trim());
+            boolean password = validatePassword(tlPassword,etPassword,etPassword.toString().trim());
+            boolean branch = validateYearBranch(tlBranch, autoCompleteTxt2.getText().toString().trim());
+            boolean year = validateYearBranch(tlYear, autoCompleteTxt.getText().toString().trim());
+            boolean email = validateEmail(tlEmail,etEmail,etEmail.getText().toString().trim());
+            boolean uniRoll = validateUniversityRoll(tlUniRollNo,etUniRollNo,etUniRollNo.getText().toString().trim());
+            boolean lastName = validateName(tlLastName, etLastName, etLastName.getText());
+            boolean firstName = validateName(tlFirstName, etFirstName, etFirstName.getText());
 
+            if (!firstName || !lastName || !uniRoll || !email || !year || !branch || !password || !address || !number) {
+                return;
             }else{
-                tlPassword.setErrorEnabled(false);
-                tlPassword.setError(null);
-                tlEmail.setErrorEnabled(false);
-                tlEmail.setError(null);
-
                 //  open Otp number verification activity
                 OpenOtpVerificationNumber(user);
-            }
+                }
         }
-
-
-    }
-
     private void OpenOtpVerificationNumber(User user) {
         Intent intent = new Intent(this, OtpVerificationNumber.class);
         intent.putExtra("userInformation", user);
