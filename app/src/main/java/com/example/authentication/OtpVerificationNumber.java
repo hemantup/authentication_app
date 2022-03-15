@@ -51,31 +51,31 @@ public class OtpVerificationNumber extends AppCompatActivity {
         sendOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        "+91"+user.MobileNumber,
-                        60,
-                        TimeUnit.SECONDS,
-                        OtpVerificationNumber.this,
-                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
-                            }
+                PhoneAuthOptions options =
+                        PhoneAuthOptions.newBuilder(mAuth)
+                                .setPhoneNumber("+91" + user.MobileNumber)       // Phone number to verify
+                                .setTimeout(60L, TimeUnit.SECONDS)       // Timeout and unit
+                                .setActivity(OtpVerificationNumber.this)        // Activity (for callback binding)
+                                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                    @Override
+                                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(OtpVerificationNumber.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                    }
 
-                            }
+                                    @Override
+                                    public void onVerificationFailed(@NonNull FirebaseException e) {
 
-                            @Override
-                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                verificationCode = verificationId;
-                                sendOtpBtn.setVisibility(View.GONE);
-                                confirmBtn.setVisibility(View.VISIBLE);
-                            }
-                        }
-                );
+                                    }
+                                    @Override
+                                    public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                    verificationCode = verificationId;
+                                    sendOtpBtn.setVisibility(View.GONE);
+                                    confirmBtn.setVisibility(View.VISIBLE);
+                                    }
+                                })          // OnVerificationStateChangedCallbacks
+                                .build();
+                PhoneAuthProvider.verifyPhoneNumber(options);
             }
         });
 

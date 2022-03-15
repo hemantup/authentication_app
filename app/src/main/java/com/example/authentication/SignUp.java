@@ -152,9 +152,7 @@ public class SignUp extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -287,7 +285,7 @@ public class SignUp extends AppCompatActivity {
             inputLayout.setErrorEnabled(true);
             inputLayout.setError("provide an email address");
             return false;
-            }else if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     editText.requestFocus();
                     inputLayout.setErrorEnabled(true);
                     inputLayout.setError("Provide an valid email");
